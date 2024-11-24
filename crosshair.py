@@ -17,6 +17,31 @@ def get_circle_size():
 
 def create_overlay():
     size = get_circle_size()
+    use_image_crosshair = os.path.exists("crosshair.png")
+
+    print(r"""
+ _______           _______ _________ _______  _______    _______  _______  _______  _______  _______           _______ _________ _______ 
+(  ____ \|\     /|(  ____ \\__   __/(  ___  )(       )  (  ____ \(  ____ )(  ___  )(  ____ \(  ____ \|\     /|(  ___  )\__   __/(  ____ )
+| (    \/| )   ( || (    \/   ) (   | (   ) || () () |  | (    \/| (    )|| (   ) || (    \/| (    \/| )   ( || (   ) |   ) (   | (    )|
+| |      | |   | || (_____    | |   | |   | || || || |  | |      | (____)|| |   | || (_____ | (_____ | (___) || (___) |   | |   | (____)|
+| |      | |   | |(_____  )   | |   | |   | || |(_)| |  | |      |     __)| |   | |(_____  )(_____  )|  ___  ||  ___  |   | |   |     __)
+| |      | |   | |      ) |   | |   | |   | || |   | |  | |      | (\ (   | |   | |      ) |      ) || (   ) || (   ) |   | |   | (\ (   
+| (____/\| (___) |/\____) |   | |   | (___) || )   ( |  | (____/\| ) \ \__| (___) |/\____) |/\____) || )   ( || )   ( |___) (___| ) \ \__
+(_______/(_______)\_______)   )_(   (_______)|/     \|  (_______/|/   \__/(_______)\_______)\_______)|/     \||/     \|\_______/|/   \__/
+                                                                                                                                         
+ ______                       _        ______ _________          _                                                                       
+(  ___ \ |\     /|  |\     /|| \    /\/ ___  \\__   __/|\     /|( (    /|                                                                
+| (   ) )( \   / )  ( \   / )|  \  / /\/   \  \  ) (   | )   ( ||  \  ( |                                                                
+| (__/ /  \ (_) /    \ (_) / |  (_/ /    ___) /  | |   | (___) ||   \ | |                                                                
+|  __ (    \   /      \   /  |   _ (    (___ (   | |   |  ___  || (\ \) |                                                                
+| (  \ \    ) (        ) (   |  ( \ \       ) \  | |   | (   ) || | \   |                                                                
+| )___) )   | |        | |   |  /  \ \/\___/  /  | |   | )   ( || )  \  |                                                                
+|/ \___/    \_/        \_/   |_/    \/\______/   )_(   |/     \||/    )_)                                                                
+""")
+
+    print(f"Crosshair Width: {size}")
+    print(f"Using Image Crosshair: {use_image_crosshair}")
+
     screen = gw.getWindowsWithTitle("Program Manager")[0]
     screen_width, screen_height = screen.width, screen.height
 
@@ -31,7 +56,7 @@ def create_overlay():
 
     canvas = tk.Canvas(root, width=screen_width, height=screen_height, bg="black", highlightthickness=0)
 
-    if os.path.exists("crosshair.png"):
+    if use_image_crosshair:
         try:
             image = Image.open("crosshair.png")
             image = image.resize((size, size), Image.Resampling.LANCZOS)
