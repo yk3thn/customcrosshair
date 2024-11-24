@@ -1,0 +1,2 @@
+python crosshair.py
+pause
